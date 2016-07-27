@@ -19,7 +19,7 @@ import java.sql.SQLException;
  *
  * @param <T>
  */
-class TemplateRowMapper<T> implements RowMapper<T> {
+public class TemplateRowMapper<T> implements RowMapper<T> {
     private Class<T> clz;
 
     public TemplateRowMapper(Class<T> clz) {
