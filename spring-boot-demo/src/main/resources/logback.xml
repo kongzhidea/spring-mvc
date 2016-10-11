@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <!-- %m输出的信息,%p日志级别,%t线程名,%d日期,%c类的全名,,,, -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%level] %class:%line - %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <!-- 按日期和大小区分的滚动日志 -->
+    <appender name="baselog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/data/logs/boot/boot.log</file>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%level] %class:%line - %m%n</pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>/data/logs/boot/boot-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+    </appender>
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="baselog"/>
+    </root>
+    <logger name="com.kk" level="info" additivity="false">
+        <appender-ref ref="console"/>
+        <appender-ref ref="baselog"/>
+    </logger>
+</configuration>
