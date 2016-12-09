@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+
+
+    http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+
+
+	http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	<!-- 拦截器,/**表示所有url，若多个拦截器则按照配置文件中先后顺序执行 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.kk.interceptor.SourceInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!-- 自定义拦截器 ，先过mvc:interceptors-->
+	<!-- 登录拦截器 -->
+    <!-- 过滤script 标签拦截器 -->
+	<bean id="ScriptInterceptor" class="com.kk.interceptor.ScriptInterceptor"/>
+	<aop:config>
+		<!--切入点,controlller -->
+		<aop:pointcut id="point_ctrl"
+			expression="execution(* com.kk.controller..*.*(..))" />
+		<!--后台切入点,controlller -->
+		<!--在该切入点使用自定义拦截器 ,按照先后顺序执行 -->
+		<aop:advisor pointcut-ref="point_ctrl" advice-ref="ScriptInterceptor" />
+	</aop:config>
+
+</beans>
