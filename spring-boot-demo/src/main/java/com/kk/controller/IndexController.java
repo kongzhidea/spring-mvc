@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
-@EnableAutoConfiguration
 public class IndexController {
     private Log logger = LogFactory.getLog(this.getClass());
 

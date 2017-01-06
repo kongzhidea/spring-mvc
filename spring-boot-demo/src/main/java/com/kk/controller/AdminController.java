@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 @Authorization
 @RequestMapping("/console")
 @RestController
-@EnableAutoConfiguration
 public class AdminController {
     private Log logger = LogFactory.getLog(this.getClass());
 
