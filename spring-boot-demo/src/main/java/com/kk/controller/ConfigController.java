@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RequestMapping("/config")
 @RestController
-@EnableAutoConfiguration
 public class ConfigController {
     private Log logger = LogFactory.getLog(this.getClass());
 

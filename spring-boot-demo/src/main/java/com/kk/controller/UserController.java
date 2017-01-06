@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @RequestMapping("/user")
 @RestController
-@EnableAutoConfiguration
 public class UserController {
     private Log logger = LogFactory.getLog(this.getClass());
 
