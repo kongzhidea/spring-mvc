@@ -3,7 +3,6 @@ package com.kk.service;
 import com.kk.dao.UserDao;
 import com.kk.model.User;
 import com.kk.model.param.UserParam;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +30,7 @@ public class UserService {
         return userDao.search(param, start, limit);
     }
 
-    public int count(@Param("param") UserParam param) {
+    public int count(UserParam param) {
         return userDao.count(param);
     }
 
