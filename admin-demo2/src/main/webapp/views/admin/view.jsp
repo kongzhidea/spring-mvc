@@ -94,7 +94,7 @@
                     if(ret.code != 0){
                         bootbox.alert(ret.msg);
                     }else{
-                        if($("#id").val == 0 || $("#id").val() == ""){
+                        if($("#id").val()==undefined || $("#id").val() == 0 || $("#id").val() == ""){
                             window.location.href="?id=" + ret.data.id;
                         }else{
                             toastr.success("更新成功");
