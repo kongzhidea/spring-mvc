@@ -178,7 +178,7 @@ public class AdminController {
     // 设置为离职
     @RequestMapping("delete")
     @ResponseBody
-    public String save(User admin,
+    public String delete(User admin,
                        HttpServletRequest request,
                        HttpServletResponse response,
                        @RequestParam("id") int id
