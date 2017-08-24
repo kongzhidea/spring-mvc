@@ -58,24 +58,27 @@
             p:prefix="/views/" p:suffix=".jsp"></bean>
 
     <!-- 配置500异常，打印异常栈 -->
-    <bean id="exceptionResolver"
-          class="com.thirdparty.spring.ex.SimpleMappingExceptionResolver">
-        <property name="exceptionMappings">
-            <props>
-                <prop key="java.lang.Exception">errors/error</prop>
-                <prop key="java.lang.Throwable">errors/error</prop>
-            </props>
-        </property>
-        <property name="statusCodes">
-            <props>
-                <prop key="errors/error">500</prop>
-            </props>
-        </property>
-        <!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 -->
-        <property name="warnLogCategory" value="NORMAL"></property>
-        <!-- 默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 -->
-        <property name="defaultErrorView" value="errors/error"></property>
-        <!-- 默认HTTP状态码 -->
-        <property name="defaultStatusCode" value="500"></property>
-    </bean>
+    <!--<bean id="exceptionResolver"-->
+          <!--class="com.thirdparty.spring.ex.SimpleMappingExceptionResolver">-->
+        <!--<property name="exceptionMappings">-->
+            <!--<props>-->
+                <!--<prop key="java.lang.Exception">errors/error</prop>-->
+                <!--<prop key="java.lang.Throwable">errors/error</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+        <!--<property name="statusCodes">-->
+            <!--<props>-->
+                <!--<prop key="errors/error">500</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+        <!--&lt;!&ndash; 设置日志输出级别，不定义则默认不输出警告等错误日志信息 &ndash;&gt;-->
+        <!--<property name="warnLogCategory" value="NORMAL"></property>-->
+        <!--&lt;!&ndash; 默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 &ndash;&gt;-->
+        <!--<property name="defaultErrorView" value="errors/error"></property>-->
+        <!--&lt;!&ndash; 默认HTTP状态码 &ndash;&gt;-->
+        <!--<property name="defaultStatusCode" value="500"></property>-->
+    <!--</bean>-->
+
+    <!-- 配置500异常，打印异常栈，推荐如下配置 -->
+    <bean id="exceptionResolver" class="com.thirdparty.spring.ex.ExceptionHandler"/>
 </beans>
