@@ -21,7 +21,7 @@ import org.apache.commons.logging.LogFactory;
 private Log logger = LogFactory.getLog(this.getClass());
 ```
 
-#### 依赖 
+#### logback依赖 
 ```
  <!-- log4j -->
 <dependency>
@@ -54,6 +54,27 @@ private Log logger = LogFactory.getLog(this.getClass());
 <dependency>
     <groupId>org.slf4j</groupId>
     <artifactId>jcl-over-slf4j</artifactId>
+    <version>1.6.6</version>
+</dependency>
+```
+
+#### log4j依赖
+```
+<!-- log4j -->
+<dependency>
+    <groupId>commons-logging</groupId>
+    <artifactId>commons-logging</artifactId>
+    <version>1.1.1</version>
+</dependency>
+<dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.16</version>
+</dependency>
+
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
     <version>1.6.6</version>
 </dependency>
 <dependency>
