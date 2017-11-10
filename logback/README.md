@@ -83,3 +83,21 @@ private Log logger = LogFactory.getLog(this.getClass());
     <version>1.6.6</version>
 </dependency>
 ```
+
+#### log4j2 动态生成logger，不依赖配置文件，推荐中间件使用，打印日志到统一的目录。
+* [log4j2 不使用配置文件，动态生成logger对象](https://www.cnblogs.com/0201zcr/p/5726072.html)
+```
+<!-- log4j2，用于动态生成logger，使用时候业务方需要自行引入响应版本 -->
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-api</artifactId>
+    <version>2.3</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>2.3</version>
+</dependency>
+
+参考 operator_log.DLogFactory
+```
