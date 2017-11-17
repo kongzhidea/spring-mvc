@@ -2904,25 +2904,4 @@ function validateInvoiceForm(t, e) {
         })
     })
 }.call(this),function () {
-}.call(this),$(function () {
-    "undefined" != typeof Clipboard && ($(".btn-copy").tooltip({
-        title: "\u590d\u5236\u6210\u529f\uff01",
-        trigger: "manual"
-    }), clipboard = new Clipboard(".btn-copy"), clipboard.on("success", function (t) {
-        t.clearSelection(), $(t.trigger).tooltip("show"), setTimeout(function () {
-            $(t.trigger).tooltip("hide")
-        }, 1e3)
-    }), $(".copy-table-btn").tooltip({
-        title: "\u590d\u5236\u8868\u683c\u6210\u529f\uff01",
-        trigger: "manual"
-    }), table_clipboard = new Clipboard(".copy-table-btn", {
-        text: function (t) {
-            return $(t).find("table").html()
-        }
-    }), table_clipboard.on("success", function (t) {
-        t.clearSelection(), $(t.trigger).tooltip("show"), setTimeout(function () {
-            $(t.trigger).tooltip("hide")
-        }, 1e3)
-    }))
-});
-
+}.call(this),$(function () {});
