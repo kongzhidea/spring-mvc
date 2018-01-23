@@ -30,5 +30,6 @@ Logger logger = LoggerFactory.getLogger("asyncLogger");
 
 
 注意点：
-异步打log,重启机器后，log信息会丢失
+1. 异步打log,重启机器后，log信息会丢失
+2. 如果配置的是异步按天日志，在0点的时候 如果有卡顿，则可能是：AsyncAppenderBase.append()方法，删除过期日志的时候，1.1.7之前的版本不会异步做，新版本1.1.7及其以后版本修正此bug。
 ```

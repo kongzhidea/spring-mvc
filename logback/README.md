@@ -39,12 +39,12 @@ private Log logger = LogFactory.getLog(this.getClass());
 <dependency>
     <groupId>ch.qos.logback</groupId>
     <artifactId>logback-classic</artifactId>
-    <version>1.0.13</version>
+    <version>1.2.3</version>
 </dependency>
 <dependency>
     <groupId>ch.qos.logback</groupId>
     <artifactId>logback-core</artifactId>
-    <version>1.0.13</version>
+    <version>1.2.3</version>
 </dependency>
 <dependency>
     <groupId>org.slf4j</groupId>
