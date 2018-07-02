@@ -1,6 +1,8 @@
 
 #### spring-boot 默认使用logback
 
+#### 行号的方法等的输出需要获取当前的运行堆栈，在日志量较大的时候会是性能的瓶颈，所以在某些日志(如统计型日志)中，直接去掉行号和方法，以此来提高日志性能。
+
 #### spring-mvc中使用logback
 * logback.xml只需要在resources目录下即可，web.xml不需要配置。
 
