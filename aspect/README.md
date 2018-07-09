@@ -16,3 +16,14 @@
 * ServiceLogAspect 记录service层日志：参数、返回值、执行时间等参数。
 * [@Pointcut的用法](https://blog.csdn.net/qq_15037231/article/details/78159456)
 
+
+```
+其他写法：
+// ..*.*(..)) 目录及子目录
+@Before("execution(* com.kk.service..*.*(..))")
+private void beforeAspect(JoinPoint joinPoint) {
+   final MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+    Method method = methodSignature.getMethod();
+}
+```
+
