@@ -1,0 +1,80 @@
+package com.kk.aop;
+
+import com.alibaba.fastjson.JSON;
+import com.kk.utils.DateUtil;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Service;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * service层日志切面
+ *
+ * @author kongzhihui
+ */
+@Order(Ordered.HIGHEST_PRECEDENCE+1)
+@Aspect
+@Service
+public class ServiceLogAspect {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Around(
+            "( "
+                    + " execution(* com.kk.service.*.*(..)) "
+                    + " or execution(* com.kk.service.biz.*.*(..)) "
+                    + " ) "
+                    + " and !execution(* com.kk.service.LogService.*(..))"
+    )
+    public Object execute(ProceedingJoinPoint joinPoint) {
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        String methodName = signature.getMethod().getName();
+        Object[] args = joinPoint.getArgs();
+
+        long start = System.currentTimeMillis();
+        Object result = null;
+        try {
+            result = joinPoint.proceed();
+        } catch (Throwable e) {
+            throw new RuntimeException("日志切面：" + e.getMessage(), e);
+        } finally {
+            long totalTime = System.currentTimeMillis() - start;
+
+            String className = signature.getMethod().getDeclaringClass().getName();
+
+            Map<String, Object> logContent = new HashMap<String, Object>();
+            try {
+                logContent.put("args", JSON.toJSONString(args));
+
+                logContent.put("result", JSON.toJSONString(result));
+            } catch (Exception e) {
+                logger.error(e.getMessage(), e);
+            }
+            logContent.put("gmtCreated", DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS"));
+            logContent.put("className", className);
+            logContent.put("methodName", methodName);
+            logContent.put("totalTime", totalTime);
+
+            logger.info(JSON.toJSONString(logContent));
+        }
+        return result;
+    }
+
+    public final static String getStringFromThrowable(Throwable e) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+        return "\r\n" + sw.toString() + "\r\n";
+    }
+
+}
